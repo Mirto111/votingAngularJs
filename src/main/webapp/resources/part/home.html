@@ -1,0 +1,11 @@
+<div class="center-elem">
+    <h2>Выберите раздел:</h2>
+    <ol>
+        <li><a href="#!dishes">Голосование</a></li>
+        <li><a href="#!results">Результаты</a></li>
+        <li ng-show="isAdmin"><a href="#!restaurants">Редактирование ресторанов</a></li>
+        <li ng-show="isAdmin"><a href="#!users">Редактирование пользователей</a></li>
+    </ol>
+    <br/>
+    <a href="#/!" ng-click="logout()" ng-show="isLoggedIn">Выход</a>
+</div>

@@ -1,0 +1,16 @@
+<a href="#!home">Главная</a>
+
+<div class="center-elem">
+    <h2 style="text-align: center"> Результаты </h2>
+    <table class="table table-bordered table-hover">
+        <thead>
+        <th>Название</th>
+        <th>Кол-во голосов</th>
+        </thead>
+
+        <tr ng-repeat="result in results">
+            <td>{{result.restaurantName}}</td>
+            <td>{{result.count}}</td>
+        </tr>
+    </table>
+</div>

@@ -1,0 +1,26 @@
+<div class="center-elem">
+    <form id="loginForm" name="loginForm"
+          ng-submit="login()" ng-click="resetStatus()" novalidate>
+
+        <div class="form-group">
+            <label for="exampleInputName1">Имя пользователя</label> <input
+                type="text" class="form-control" ng-model="username"
+                placeholder="Имя">
+        </div>
+        <div class="form-group">
+            <label for="exampleInputPassword1">Пароль</label> <input
+                type="password" class="form-control" ng-model="password"
+                placeholder="Пароль">
+        </div>
+
+        <div class="form-group" ng-show="loginError">
+            <div class="alert alert-danger" role="alert">Ошибка: неверный логин или пароль</div>
+        </div>
+
+        <input role="button" type="submit" value="Войти" class="btn btn-primary"/>
+    </form>
+    <br/>
+    <button ng-click="joinAsAdmin()">Войти как Админ</button>
+    <button ng-click="joinAsUser()">Войти как Юзер</button>
+
+</div>

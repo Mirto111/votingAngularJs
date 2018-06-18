@@ -1,0 +1,26 @@
+<!DOCTYPE HTML>
+<html ng-app="mainModule">
+
+<head>
+    <title>Spring Security/AngularJS demo</title>
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script>
+        function getContextPath() {
+            return window.location.pathname.substring(0, window.location.pathname
+                .indexOf("/", 2));
+        }
+    </script>
+</head>
+<body>
+
+<section id="main-body" ng-view>
+</section>
+<script src="js/angular.min.js"></script>
+<script src="js/angular-cookies.min.js"></script>
+<script src="js/angular-route.min.js"></script>
+<script src="js/ui-bootstrap-tpls-2.5.0.min.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

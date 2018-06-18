@@ -1,0 +1,31 @@
+<a href="#!home">Главная</a>
+
+<hr>
+<h2 style="text-align: center">Выберите ресторан:</h2>
+<div class="row">
+    <div class="col-md-3 text-center " ng-repeat="restaurant in restaurants">
+        <table table class="table table-bordered table-hover">
+            <thead>
+            <tr>
+                <th class="text-center" colspan="2">{{restaurant.name}}</th>
+            </tr>
+            </thead>
+            <tr>
+                <td><strong>Описание</strong></td>
+                <td><strong>Цена</strong></td>
+            </tr>
+            <tr ng-repeat="dish in dishes" ng-if="restaurant.id == dish.restaurant.id">
+                <td> {{dish.description}}</td>
+                <td> {{dish.price}}</td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <button ng-click="doVote(restaurant)">Голосовать</button>
+                </td>
+            </tr>
+        </table>
+
+    </div>
+
+</div>
+

@@ -1,0 +1,95 @@
+<a href="#!home" style="font-size: 20px">Главная</a>
+
+<script type="text/ng-template" id="addRestaurant.htm">
+    <h2> Add Restaurant </h2>
+    Name : <input type="text" ng-model="restaurant.name" required><br/><br/>
+    <input type="button" ng-click="createRest()" value="Save" class="btn btn-default"><br/><br/>
+    <input type="button" onclick="window.history.back()" value="Cancel" class="btn btn-default"><br/><br/>
+</script>
+<script type="text/ng-template" id="editRest.htm">
+    <h2> Edit Restaurant </h2>
+    Name : <input type="text" ng-model="restaurant.name" required><br/><br/>
+    <input type="button" ng-click="saveRest(restaurant.id,restaurant)" value="Save" class="btn btn-default"><br/><br/>
+    <input type="button" onclick="window.history.back()" value="Cancel" class="btn btn-default"><br/><br/>
+</script>
+<div class="row">
+    <div class="col-xs-6">
+        <h2> Список ресторанов </h2>
+        <table table class="table table-bordered table-hover">
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th></th>
+                <th></th>
+            </tr>
+            </thead>
+            <tr ng-repeat="restaurant in restaurants">
+                <td><a href="" ng-click="getDishes(restaurant)">{{restaurant.name}}</a></td>
+                <td><input type="button" class="btn btn-warning" ng-click="updateRest(restaurant)" value="Update"></td>
+                <td>
+                    <button class="btn btn-danger" ng-click="deleteRest(restaurant)">Delete</button>
+                </td>
+            </tr>
+        </table>
+        <a href="#!addRestaurant" class="btn btn-info" role="button">Add Restaurant</a>
+    </div>
+
+    <div class="col-xs-6">
+        <h2>{{restaurantName}}Список еды</h2>
+        <table table class="table table-bordered table-hover">
+            <thead>
+            <tr>
+                <th>Description</th>
+                <th>Price</th>
+                <th></th>
+                <th></th>
+            </tr>
+            </thead>
+            <tr ng-repeat="dish in dishes">
+                <td> {{dish.description}}</td>
+                <td> {{dish.price}}</td>
+                <td>
+                    <button class="btn btn-warning" ng-click="updateDish(dish)">Update</button>
+                </td>
+                <td>
+                    <button class="btn btn-danger" ng-click="deleteDish(dish)">Delete</button>
+                </td>
+            </tr>
+        </table>
+        <input class="btn btn-info" type="button" ng-click="addDish()" value="Add Dish" ng-show="isRestSelected">
+    </div>
+</div>
+<script type="text/ng-template" id="addDish.htm">
+    <div class="modal-header">
+        <h2> Add Dish </h2>
+    </div>
+    <div class="modal-body">
+        Time : <input type="date" ng-model="dish.currentDate" required><br/><br/>
+        Name : <input type="text" ng-model="dish.description" required><br/><br/>
+        Price : <input type="number" ng-model="dish.price" required><br/><br/>
+        Restaurant : <span>{{restaurantName}}</span> <br/><br/>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-success" ng-click="createDish(dish)">Save</button>
+        <br/><br/>
+        <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+    </div>
+</script>
+<script type="text/ng-template" id="editDish.htm">
+    <div class="modal-header">
+        <h2> Edit Dish </h2>
+    </div>
+    <div class="modal-body">
+        Time : <input type="date" ng-model="dish.currentDate" required><br/><br/>
+        Name : <input type="text" ng-model="dish.description" required><br/><br/>
+        Price : <input type="number" ng-model="dish.price" required><br/><br/>
+        Restaurant : <span>{{dish.restaurant.name}}</span> <br/><br/>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-success" ng-click="saveDish(dish, dish.id)">Save</button>
+        <br/><br/>
+        <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+    </div>
+</script>
+
+

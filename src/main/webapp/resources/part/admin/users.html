@@ -1,0 +1,104 @@
+<a href="#!home">Главная</a>
+
+<h2> Список пользователей </h2>
+<table table class="table table-bordered table-hover" style="width: 80%">
+    <thead>
+    <tr>
+        <th>Email</th>
+        <th>Name</th>
+        <th>Roles</th>
+        <th></th>
+        <th></th>
+    </tr>
+
+    </thead>
+    <tr ng-repeat="user in users">
+        <td>{{user.email}}</td>
+        <td>{{user.name}}</td>
+        <td>{{user.roles}}</td>
+        <td><a href="" ng-click="updateUser(user)">Update</a></td>
+        <td><a href="" ng-click="deleteUser(user)">Delete</a></td>
+    </tr>
+</table>
+<a href="#!addUser">Add User</a>
+
+<script type="text/ng-template" id="addUser.htm">
+    <legend>Personal information:</legend>
+    <form class="form-horizontal">
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="email">Email:</label>
+            <div class="col-sm-10">
+                <input type="email" class="form-control" ng-model="user.email" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-2"> Name:</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" ng-model="user.name" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-2">Password:</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" ng-model="user.password" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-2"> Roles:</label>
+            <div class="col-sm-10">
+                <ol>
+                    <li ng-repeat="role in roles"><input type="checkbox"
+                                                         ng-checked="selectedList.indexOf(role) != -1"
+                                                         ng-click="toggleCheck(role)">{{role}}
+                    </li>
+                </ol>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <input type="button" ng-click="createUser(user)" value="Save" class="btn btn-default">
+                <input type="button" onclick="window.history.back()" value="Cancel" class="btn btn-default">
+            </div>
+        </div>
+    </form>
+</script>
+<script type="text/ng-template" id="editUser.htm">
+    <legend>Personal information:</legend>
+    <form class="form-horizontal">
+        <div class="form-group">
+            <label class="control-label col-sm-3" for="email">Email:</label>
+            <div class="col-sm-9">
+                <input type="email" class="form-control" ng-model="user.email" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-3"> Name:</label>
+            <div class="col-sm-9">
+                <input type="text" class="form-control" ng-model="user.name" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-3">Password:</label>
+            <div class="col-sm-9">
+                <input type="text" class="form-control" ng-model="user.password" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-3"> Roles:</label>
+            <div class="col-sm-9">
+                <ol>
+                    <li ng-repeat="role in roles"><input type="checkbox"
+                                                         ng-checked="selectedList.indexOf(role) != -1"
+                                                         ng-click="toggleCheck(role)">{{role}}
+                    </li>
+                </ol>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-3 col-sm-9">
+                <input type="button" ng-click="saveUser(user.id, user)" value="Save" class="btn btn-default">
+                <input type="button" onclick="window.history.back()" value="Cancel" class="btn btn-default">
+            </div>
+        </div>
+    </form>
+</script>
