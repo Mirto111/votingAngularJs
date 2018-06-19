@@ -11,15 +11,14 @@ import java.util.List;
  */
 public interface DishService {
 
-
     Dish save(Dish dish, int restId);
 
     Dish get(int id, int restId);
 
     int delete(int id, int restId);
 
-    Collection<Dish> getAllForDay(int restId, LocalDate localDate);
+    Collection<Dish> getAllByRestaurantAndDate(int restId, LocalDate localDate);
 
-    List<Dish>getAll();
+    List<Dish> getAllByDate(LocalDate localDate);
 
 }

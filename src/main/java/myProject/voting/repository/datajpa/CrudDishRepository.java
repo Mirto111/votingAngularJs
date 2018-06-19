@@ -17,9 +17,6 @@ public interface CrudDishRepository extends JpaRepository<Dish, Integer> {
     @Override
     Dish save(Dish dish);
 
-    @Query("SELECT d FROM Dish d WHERE d.id=:id AND d.restaurant.id=:restId")
-    Dish get(@Param("id") int id, @Param("restId") int restId);
-
     Dish getByIdAndRestaurantId(int id, int restId);
 
     @Modifying
@@ -27,9 +24,7 @@ public interface CrudDishRepository extends JpaRepository<Dish, Integer> {
     @Query("DELETE FROM Dish d where d.id=:id AND d.restaurant.id=:restId")
     int delete(@Param("id") int id, @Param("restId") int restId);
 
-    @Query("SELECT d FROM Dish d WHERE d.restaurant.id=:restId AND d.currentDate=:localDate")
-    List<Dish> getAllForDay(@Param("restId") int restId, @Param("localDate") LocalDate localDate);
+    List<Dish> getAllByRestaurantIdAndCurrentDate(int restId, LocalDate localDate);
 
-
-
+    List<Dish> getAllByCurrentDate(LocalDate localDate);
 }

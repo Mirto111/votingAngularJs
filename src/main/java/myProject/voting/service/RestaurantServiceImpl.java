@@ -28,7 +28,7 @@ public class RestaurantServiceImpl implements RestaurantService {
 
     @Override
     public Restaurant get(int restId) {
-        return crudRestaurantRepository.findById(restId).get();// уточнить
+        return crudRestaurantRepository.getOne(restId);
     }
 
     @Override

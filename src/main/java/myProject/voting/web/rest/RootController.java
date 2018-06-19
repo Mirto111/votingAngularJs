@@ -15,9 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.security.Principal;
 
-/**
- * Created by Secret_Hero on 01.03.2018.
- */
+
 
 @Controller
 public class RootController {

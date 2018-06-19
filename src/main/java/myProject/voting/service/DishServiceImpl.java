@@ -43,12 +43,12 @@ public class DishServiceImpl implements DishService {
     }
 
     @Override
-    public Collection<Dish> getAllForDay(int restId, LocalDate localDate) {
-        return crudDishRepository.getAllForDay(restId, localDate);
+    public Collection<Dish> getAllByRestaurantAndDate(int restId, LocalDate localDate) {
+        return crudDishRepository.getAllByRestaurantIdAndCurrentDate(restId, localDate);
     }
 
     @Override
-    public List<Dish> getAll() {
-        return crudDishRepository.findAll();
+    public List<Dish> getAllByDate(LocalDate localDate) {
+        return crudDishRepository.getAllByCurrentDate(localDate);
     }
 }

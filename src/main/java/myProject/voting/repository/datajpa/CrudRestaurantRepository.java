@@ -25,10 +25,9 @@ public interface CrudRestaurantRepository extends JpaRepository<Restaurant, Inte
     int delete(@Param("id") Integer id);
 
     @Override
-    Optional<Restaurant> findById(Integer integer);
+    Restaurant getOne(Integer integer);
 
     @Override
     List<Restaurant> findAll(Sort sort);
-
 
 }

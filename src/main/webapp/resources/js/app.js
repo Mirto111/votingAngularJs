@@ -183,9 +183,9 @@ function AddDishController($scope, $http, $location, $uibModalInstance, items) {
 function EditDishController($scope, $http, $location, authService, $uibModalInstance) {
     $scope.dish = authService.getData();
     $scope.dish.currentDate = new Date($scope.dish.currentDate);
-    $scope.saveDish = function (dish, id) {
+    $scope.saveDish = function (dish) {
 
-        $http.put(getContextPath() + "/rest/dishes/" + id, dish, {params: {restId: dish.restaurant.id}}).then(
+        $http.put(getContextPath() + "/rest/dishes/", dish, {params: {restId: dish.restaurant.id}}).then(
             function (response) {
 
                 $uibModalInstance.close();

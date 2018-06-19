@@ -10,9 +10,7 @@ import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.util.concurrent.ConcurrentHashMap;
 
-/**
- * Created by Secret_Hero on 24.10.2017.
- */
+
 @Entity
 @Table(name = "vote")
 public class Vote extends BaseEntity {

@@ -10,9 +10,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Collection;
 import java.util.EnumSet;
 
-/**
- * Created by Secret_Hero on 29.03.2018.
- */
 
 
 @RestController
