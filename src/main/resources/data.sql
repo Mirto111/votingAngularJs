@@ -7,9 +7,9 @@ ALTER SEQUENCE global_seq RESTART WITH 1;
 
 
 INSERT INTO users (name, email, password)
-VALUES ('User', 'user@yandex.ru', 'user'),
-('Admin', 'admin@gmail.com', 'admin'),
-  ('User1', 'user1@yandex.ru', 'user1');
+VALUES ('User', 'user@yandex.ru', '$2a$10$lvB2KsXBJCRHkjzc7puy9.LPM3GxZuXspshPgHtAIez4a/PjkjOlC'),
+('Admin', 'admin@gmail.com', '$2a$10$TEM2ZgHZGTPQMjCIzy6ciubuo5.1iGd5mfFxYFmNIqll4q8F1Jn.y'),
+  ('User1', 'user1@yandex.ru', '{noop}user1');
 
 
 INSERT INTO restaurants(name)

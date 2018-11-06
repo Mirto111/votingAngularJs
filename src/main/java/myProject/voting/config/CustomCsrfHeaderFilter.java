@@ -1,5 +1,6 @@
 package myProject.voting.config;
 
+
 import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;

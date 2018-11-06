@@ -22,7 +22,7 @@ public class RootController {
 
     @GetMapping("/")
     public String root() {
-        return "redirect:/resources/index.html";
+        return "redirect:resources/index.html";
     }
 
 

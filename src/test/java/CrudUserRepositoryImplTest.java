@@ -1,20 +1,16 @@
-package myProject.voting.repository.datajpa;
-
 import myProject.voting.model.Role;
 import myProject.voting.model.User;
+import myProject.voting.repository.datajpa.CrudUserRepository;
+import myProject.voting.repository.datajpa.UserTestData;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
 
-@ContextConfiguration({
-        "classpath:spring/spring-app.xml",
-        "classpath:spring/spring-db.xml"
-})
-@RunWith(SpringJUnit4ClassRunner.class)
-
+@RunWith(SpringRunner.class)
+@SpringBootTest(classes = VotingApplication.class, webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
 public class CrudUserRepositoryImplTest {
 
     @Autowired
@@ -49,6 +45,6 @@ public class CrudUserRepositoryImplTest {
     @Test
     public void delete() {
         crudUserRepository.delete(1);
-        Assert.assertTrue(crudUserRepository.delete(1)!=0);
+        Assert.assertTrue(crudUserRepository.delete(1) != 0);
     }
 }

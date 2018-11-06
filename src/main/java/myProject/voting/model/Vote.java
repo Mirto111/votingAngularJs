@@ -1,6 +1,7 @@
 package myProject.voting.model;
 
-import org.hibernate.validator.constraints.NotBlank;
+
+import javax.validation.constraints.NotBlank;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.Column;
@@ -26,7 +27,7 @@ public class Vote extends BaseEntity {
     @NotBlank
     private String restaurantName;
 
-    @Column(name = "count", nullable = false)
+    @Column(name = "count_vote", nullable = false)
     private int count;
 
     public Vote() {

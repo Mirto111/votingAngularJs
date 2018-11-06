@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
@@ -17,7 +18,7 @@ public class UserServiceImpl implements UserDetailsService, UserService {
     private static final Sort SORT_NAME_EMAIL = Sort.by("name", "email");
 
     @Autowired
-    private CrudUserRepository crudRepository;
+    private  CrudUserRepository crudRepository;
 
     @Override
     public User save(User user) {
