@@ -5,6 +5,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 
@@ -23,7 +24,7 @@ public class Dish extends BaseEntity {
 
     @Column(name = "price", nullable = false)
     @NotNull
-    private Double price;
+    private BigDecimal price;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "rest_id", nullable = false)
@@ -33,18 +34,18 @@ public class Dish extends BaseEntity {
     }
 
 
-    public Dish(LocalDate localDate, String description, Double price) {
+    public Dish(LocalDate localDate, String description, BigDecimal price) {
         this(null, localDate, description, price);
     }
 
-    public Dish(Integer id, LocalDate localDate, String description, Double price) {
+    public Dish(Integer id, LocalDate localDate, String description, BigDecimal price) {
         super(id);
         this.currentDate = localDate;
         this.description = description;
         this.price = price;
     }
 
-    public Dish(Integer id, LocalDate currentDate, String description, Double price, Restaurant restaurant) {
+    public Dish(Integer id, LocalDate currentDate, String description, BigDecimal price, Restaurant restaurant) {
         super(id);
         this.currentDate = currentDate;
         this.description = description;
@@ -52,11 +53,11 @@ public class Dish extends BaseEntity {
         this.restaurant = restaurant;
     }
 
-    public Double getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
-    public void setPrice(Double money) {
+    public void setPrice(BigDecimal money) {
         this.price = money;
     }
 
