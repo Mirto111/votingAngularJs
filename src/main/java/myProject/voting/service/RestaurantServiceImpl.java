@@ -2,6 +2,7 @@ package myProject.voting.service;
 
 import myProject.voting.model.Restaurant;
 import myProject.voting.repository.datajpa.CrudRestaurantRepository;
+import myProject.voting.util.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
@@ -18,23 +19,24 @@ public class RestaurantServiceImpl implements RestaurantService {
 
     @Override
     public Restaurant save(Restaurant restaurant) {
+
         return crudRestaurantRepository.save(restaurant);
     }
 
     @Override
-    public int delete(int restId) {
-        return crudRestaurantRepository.delete(restId);
+    public void delete(int restId) {
+        get(restId);
+        crudRestaurantRepository.delete(restId);
     }
 
     @Override
     public Restaurant get(int restId) {
-        return crudRestaurantRepository.getOne(restId);
+        return crudRestaurantRepository.findById(restId).orElseThrow(()->new NotFoundException("Restaurant with id="+ restId+" not found"));
     }
 
     @Override
     public Collection<Restaurant> getAll() {
         return crudRestaurantRepository.findAll(SORT_NAME);
     }
-
 
 }

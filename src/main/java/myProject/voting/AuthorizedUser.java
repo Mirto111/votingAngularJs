@@ -1,10 +1,12 @@
 package myProject.voting;
 
 import myProject.voting.model.User;
+import myProject.voting.util.NotFoundException;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 
 
+import java.util.Objects;
 
 import static java.util.Objects.requireNonNull;
 
@@ -43,7 +45,10 @@ public class AuthorizedUser extends org.springframework.security.core.userdetail
 
     public static AuthorizedUser get() {
         AuthorizedUser user = safeGet();
-        requireNonNull(user, "No authorized user found");
+        if(Objects.isNull(user)){
+            throw  new NotFoundException("Authorized User not found");
+        }
+
         return user;
     }
 

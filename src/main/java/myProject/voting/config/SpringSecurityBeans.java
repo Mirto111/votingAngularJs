@@ -30,12 +30,5 @@ public class SpringSecurityBeans {
 		return repository;
 	}
 
-	@Bean
-	public Http403ForbiddenEntryPoint http403ForbiddenEntryPoint() {
-		return new Http403ForbiddenEntryPoint();
-	}
-
-
-
 
 }

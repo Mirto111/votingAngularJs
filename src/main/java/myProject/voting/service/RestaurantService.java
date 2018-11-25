@@ -11,7 +11,7 @@ public interface RestaurantService {
 
     Restaurant save(Restaurant restaurant);
 
-    int delete(int restId);
+    void delete(int restId);
 
     Restaurant get(int restId);
 

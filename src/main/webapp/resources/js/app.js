@@ -20,32 +20,34 @@ function HomeController($scope, $window, authService) {
 
 function ModelVotingController($scope, $http, $location, authService) {
 
-    $http.get(getContextPath() + "/rest/dishes").then(function (response) {
+    $http.get(getContextPath() + "/rest/restaurants/dishes").then(function (response) {
         $scope.dishes = response.data;
     });
-    $http.get(getContextPath() + "/rest/restaurants/").then(function (response) {
+    $http.get(getContextPath() + "/rest/restaurants").then(function (response) {
         $scope.restaurants = response.data;
     });
 
     $scope.doVote = function (restaurant) {
-        $http.post(getContextPath() + "/rest/restaurants/vote", restaurant).then(
+        $http.post(getContextPath() + "/rest/voting/vote/"+restaurant.id).then(
             function (response) {
                 $location.path("/results");
             }
-        );
+        ).catch(function () {
+          alert("Voting is over");
+        });
     }
 }
 
 function ResultVotingController($scope, $http, authService) {
 
-    $http.get(getContextPath() + "/rest/restaurants/results").then(function (response) {
+    $http.get(getContextPath() + "/rest/voting/results").then(function (response) {
         $scope.results = response.data;
     });
 
 }
 
 function SaveResultController($scope, $http, $location) {
-    $http.get(getContextPath() + "/rest/restaurants/saveResults").then(function (response) {
+    $http.get(getContextPath() + "/rest/voting/saveResults").then(function (response) {
         $location.path("/home");
     });
 }
@@ -78,7 +80,7 @@ function RestaurantController($scope, $http, $location, authService, $uibModal) 
     };
 
     $scope.getDishes = function (restaurant) {
-        $http.get(getContextPath() + "/rest/dishes/restaurant/" + restaurant.id).then(function (response) {
+        $http.get(getContextPath() + "/rest/restaurants/"+ restaurant.id +"/dishes/getAllByRestaurant").then(function (response) {
             $scope.dishes = response.data;
             selectedRest = restaurant;
             $scope.restaurantName = restaurant.name + ":  ";
@@ -122,7 +124,7 @@ function RestaurantController($scope, $http, $location, authService, $uibModal) 
 
         $scope.deleteDish = function (dish) {
 
-            $http.delete(getContextPath() + "/rest/dishes/" + dish.id, {params: {restId: dish.restaurant.id}}).then(
+            $http.delete(getContextPath() + "/rest/restaurants/"+dish.restaurant.id+"/dishes/" + dish.id).then(
                 function (response) {
                     var index = $scope.dishes.indexOf(dish);
                     $scope.dishes.splice(index, 1);
@@ -165,7 +167,7 @@ function AddDishController($scope, $http, $location, $uibModalInstance, items) {
     $scope.createDish = function (dish) {
         dish.currentDate = new Date(dish.currentDate.getFullYear(), dish.currentDate.getMonth(), dish.currentDate.getDate() + 1);
 
-        $http.post(getContextPath() + "/rest/dishes/", dish, {params: {restId: items.id}}).then(
+        $http.post(getContextPath() + "/rest/restaurants/"+items.id+"/dishes", dish).then(
             function (response) {
 
                 $uibModalInstance.close(response.data);
@@ -185,7 +187,7 @@ function EditDishController($scope, $http, $location, authService, $uibModalInst
     $scope.dish.currentDate = new Date($scope.dish.currentDate);
     $scope.saveDish = function (dish) {
 
-        $http.put(getContextPath() + "/rest/dishes/", dish, {params: {restId: dish.restaurant.id}}).then(
+        $http.put(getContextPath() + "/rest/restaurants/"+dish.restaurant.id+"/dishes", dish).then(
             function (response) {
 
                 $uibModalInstance.close();
@@ -528,7 +530,7 @@ var mainModule = angular
                 return {
                     'responseError': function (errorResponse) {
                         switch (errorResponse.status) {
-                            case 403:
+                            case 401:
 
                                 if ($window.location.hash
                                     .indexOf("login") == -1)
